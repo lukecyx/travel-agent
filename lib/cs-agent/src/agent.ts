@@ -1,18 +1,33 @@
 import { runLLM } from "./llm";
-import { addMessages, getMessages } from "./memory";
+import {
+  addMessages,
+  getLastMessage,
+  getMessages,
+  saveToolResponse,
+} from "./memory";
+import { runTool } from "./toolRunner";
+
+import { tools } from "./tools/";
 
 export async function runAgent({ userMessage }: { userMessage: string }) {
-  console.log("RUN AGENT CALLED");
   await addMessages([{ role: "user", content: userMessage }]);
-  console.log(1);
-  const history = await getMessages();
-  console.log({ history });
-  console.log(2);
-  // return;
-  const agentResponse = await runLLM({ messages: history });
-  console.log(3);
-  await addMessages([agentResponse]);
-  console.log(4);
 
-  return agentResponse;
+  while (true) {
+    const history = await getMessages();
+    const response = await runLLM({ messages: history, tools });
+
+    await addMessages([response]);
+
+    if (response.content) {
+      // return getMessages()
+      return getLastMessage();
+    }
+
+    if (response.tool_calls) {
+      const toolCall = response.tool_calls[0];
+
+      const toolResponse = await runTool(toolCall, userMessage);
+      await saveToolResponse(toolCall.id, toolResponse);
+    }
+  }
 }

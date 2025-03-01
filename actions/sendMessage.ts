@@ -8,8 +8,6 @@ export async function sendMessageAction(formData: unknown) {
     throw new Error("no form data");
   }
 
-  // console.log({ prevState, formData });
-
   const userMessageSchema = z.object({
     userMessage: z.string(),
   });
@@ -22,9 +20,7 @@ export async function sendMessageAction(formData: unknown) {
     console.log("✅", result.data);
   }
 
-  const ret = [];
-  ret.push(result.data.userMessage);
+  const ret = await runAgent({ userMessage: result.data?.userMessage });
 
-  // return { messages: ret };
-  return await runAgent({ userMessage: result.data?.userMessage });
+  return ret;
 }

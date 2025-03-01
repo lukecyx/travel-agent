@@ -4,20 +4,29 @@ import { sendMessageAction } from "@/actions/sendMessage";
 import { useActionState, useRef, useState } from "react";
 import Loading from "./Loading";
 import ChatMessage from "./ChatMessage";
-import { AIMessage } from "@/lib/cs-agent/src/types";
+import type { AIMessage } from "@/lib/cs-agent/src/types";
+
+function removeToolMessages(messages: AIMessage[]) {
+  const ret = [];
+  for (let i = 0; i < messages.length; i++) {
+    const message = messages[i];
+    if (message.role === "tool") {
+      continue;
+    }
+
+    if (!message.content) {
+      continue;
+    }
+
+    ret.push(message);
+  }
+
+  return ret;
+}
 
 function Chatbox() {
-  // const [actionState, action, pending] = useActionState(
-  //   sendMessageAction,
-  //   null,
-  // );
-  //
-  type messages = {
-    sender: string;
-    content: string;
-  };
   const [messages, setMessages] = useState<AIMessage[]>([]);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setIsLoading] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -34,10 +43,13 @@ function Chatbox() {
     }
 
     setIsLoading((prevState) => !prevState);
-    const agentResponse = await sendMessageAction(formData);
-    setIsLoading((prevState) => !prevState);
 
+    const agentResponse = await sendMessageAction(formData);
+    // const prunedAgentResponse = removeToolMessages(agentResponse!);
+    // setMessages((prevState) => [...prevState, ...prunedAgentResponse!]);
     setMessages((prevState) => [...prevState, agentResponse!]);
+
+    setIsLoading((prevState) => !prevState);
   }
   return (
     <div>
@@ -46,17 +58,17 @@ function Chatbox() {
       {messages.map((message, idx) => (
         <ChatMessage
           key={idx}
-          content={message.content as string}
+          content={(message.content as string) ?? ""}
           role={message.role}
         />
       ))}
       <form onSubmit={onSubmit}>
         <div className="flex gap-2 rounded-lg bg-gray-50 p-4 shadow-md">
-          <textarea
+          <input
             ref={inputRef}
+            type="text"
             name="userMessage"
             className="form-textarea w-full rounded-lg border-gray-300 text-sm"
-            rows={1}
             placeholder="Ask anything"
           />
           <button

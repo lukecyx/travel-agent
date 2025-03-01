@@ -42,3 +42,21 @@ export async function getMessages() {
   const db = await getDb();
   return db.data.messages.map(removeMetadata);
 }
+
+export async function getLastMessage() {
+  const db = await getDb();
+  return db.data.messages.map(removeMetadata).pop();
+}
+
+export const saveToolResponse = async (
+  toolCallId: string,
+  toolResponse: string,
+) => {
+  return addMessages([
+    {
+      role: "tool",
+      content: toolResponse,
+      tool_call_id: toolCallId,
+    },
+  ]);
+};
