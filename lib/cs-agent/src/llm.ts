@@ -9,7 +9,7 @@ type runLLMParams = {
 };
 
 export async function runLLM({ messages, tools }: runLLMParams) {
-  console.log("🤔");
+  console.log("🤔 running llm");
   const response = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     temperature: 0.1,

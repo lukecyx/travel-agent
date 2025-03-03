@@ -1,6 +1,19 @@
-import { flightFinderToolDefinition } from "./flightFinderTool";
-import { weatherToolDefinition } from "./weatherTool";
+import { flightFinderToolDefinition, findFlights } from "./flightFinderTool";
+import { weatherToolDefinition, getWeather } from "./weatherTool";
+import { sendEmailToolDefinition, sendEmailTool } from "./sendEmailTool";
 
-const tools = [weatherToolDefinition, flightFinderToolDefinition];
+const tools = [
+  weatherToolDefinition,
+  flightFinderToolDefinition,
+  sendEmailToolDefinition,
+];
 
-export { tools };
+export {
+  tools,
+  findFlights,
+  flightFinderToolDefinition,
+  getWeather,
+  weatherToolDefinition,
+  sendEmailTool,
+  sendEmailToolDefinition,
+};
