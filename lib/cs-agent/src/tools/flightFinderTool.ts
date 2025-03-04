@@ -57,48 +57,56 @@ export async function findFlights({
       from: "LDN",
       to: "CDG", // Charles de Gaulle, Paris
       price: Math.floor(Math.random() * (500 - 100 + 1)) + 100, // Random price between 100 and 500
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business", // Random class selection
     },
     {
       from: "LDN",
       to: "AMS", // Amsterdam Schiphol
       price: Math.floor(Math.random() * (600 - 200 + 1)) + 200,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
     {
       from: "LDN",
       to: "FRA", // Frankfurt Airport
       price: Math.floor(Math.random() * (700 - 250 + 1)) + 250,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
     {
       from: "LDN",
       to: "FCO", // Leonardo da Vinci International, Rome
       price: Math.floor(Math.random() * (400 - 150 + 1)) + 150,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
     {
       from: "LDN",
       to: "SVO", // Sheremetyevo International, Moscow
       price: Math.floor(Math.random() * (900 - 300 + 1)) + 300,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
     {
       from: "LDN",
       to: "BCN", // Barcelona El Prat
       price: Math.floor(Math.random() * (600 - 150 + 1)) + 150,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
     {
       from: "LDN",
       to: "MUC", // Munich Airport
       price: Math.floor(Math.random() * (800 - 250 + 1)) + 250,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
     {
       from: "LDN",
       to: "VIE", // Vienna International
       price: Math.floor(Math.random() * (500 - 200 + 1)) + 200,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
     {
@@ -106,11 +114,13 @@ export async function findFlights({
       to: "ZRH", // Zurich Airport
       price: Math.floor(Math.random() * (600 - 150 + 1)) + 150,
       class: Math.random() > 0.5 ? "economy" : "business",
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
     },
     {
       from: "LDN",
       to: "BRU", // Brussels Airport
       price: Math.floor(Math.random() * (400 - 100 + 1)) + 100,
+      duration: Math.floor(Math.random() * (60 - 15 + 1)),
       class: Math.random() > 0.5 ? "economy" : "business",
     },
   ];

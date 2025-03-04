@@ -7,6 +7,8 @@ import {
   flightFinderToolDefinition,
   sendEmailTool,
   sendEmailToolDefinition,
+  hotelFinderToolDefinition,
+  findHotels,
 } from "./tools";
 
 export async function runTool(
@@ -25,6 +27,8 @@ export async function runTool(
       return findFlights(input);
     case sendEmailToolDefinition.name:
       return sendEmailTool(input);
+    case hotelFinderToolDefinition.name:
+      return findHotels(input);
 
     default:
       throw new Error("undefined tool");
