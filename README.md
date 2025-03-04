@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Roadmap
+
+- Structured Outputs
+- System prompt needs improving.
+- Break the messaging out of the request loop by adding user messages to a queue and have a background task
+  to process the messages.
+- Create another agent that sits in between the travel agent and the user to generate a better prompt for the
+  travel agent.
+
+## Experiments
+
+- Each agent should be its own thing i.e. "flight agent", "weather agent", "email agent". System prompts can then be tailored more specifically. This **might** lead to better reasoning.
+- Add an agent above all the other agents that takes the users message and then generates a prompt for the other agents. This should provide the other agents a better context to work with.
