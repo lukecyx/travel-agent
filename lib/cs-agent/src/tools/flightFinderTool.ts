@@ -39,14 +39,14 @@ export async function findFlights({
   toolArgs: Args;
 }): Promise<string> {
   console.log("✈️ finding flights... ");
-  const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/${toolArgs.countryCode}/${toolArgs.currencyCode}/${toolArgs.locale}/${toolArgs.originAndDestination}/${toolArgs.travelDate}`;
-  const options = {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": process.env["X_RAPIDAPI_KEY"],
-      "x-rapidapi-host": process.env["X_RAPIDAPI_HOST"],
-    },
-  };
+  // const url = `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/${toolArgs.countryCode}/${toolArgs.currencyCode}/${toolArgs.locale}/${toolArgs.originAndDestination}/${toolArgs.travelDate}`;
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     "x-rapidapi-key": process.env["X_RAPIDAPI_KEY"],
+  //     "x-rapidapi-host": process.env["X_RAPIDAPI_HOST"],
+  //   },
+  // };
 
   // const response = await fetch(url, options).then((response) =>
   //   response.json(),

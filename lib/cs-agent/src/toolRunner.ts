@@ -1,9 +1,13 @@
 import type OpenAI from "openai";
-import { getWeather, weatherToolDefinition } from "./tools/weatherTool";
+
 import {
+  getWeather,
+  weatherToolDefinition,
   findFlights,
   flightFinderToolDefinition,
-} from "./tools/flightFinderTool";
+  sendEmailTool,
+  sendEmailToolDefinition,
+} from "./tools";
 
 export async function runTool(
   toolCall: OpenAI.Chat.Completions.ChatCompletionMessageToolCall,
@@ -19,6 +23,8 @@ export async function runTool(
       return getWeather(input);
     case flightFinderToolDefinition.name:
       return findFlights(input);
+    case sendEmailToolDefinition.name:
+      return sendEmailTool(input);
 
     default:
       throw new Error("undefined tool");
